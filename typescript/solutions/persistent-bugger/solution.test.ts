@@ -1,11 +1,10 @@
-import { assert } from "chai";
 import { persistence } from "./solution";
 
 describe("Persistent Bugger.", () => {
   it("Fixed tests", () => {
-    assert.strictEqual(persistence(39),3);
-    assert.strictEqual(persistence(4),0);
-    assert.strictEqual(persistence(25),2);
-    assert.strictEqual(persistence(999),4);
+    expect(persistence(39)).toBe(3);
+    expect(persistence(4)).toBe(0);
+    expect(persistence(25)).toBe(2);
+    expect(persistence(999)).toBe(4);
   });
 });
