@@ -2,20 +2,21 @@ namespace Solutions.SplitStrings
 {
   public class SplitString
   {
-    static IEnumerable<string> Split(string str)
-    {
-      for (int i = 0; i < str.Length; i += 2) {
-        var substr = str.Substring(i, i + 2 > str.Length ? 1 : 2);
-        if (substr.Length == 1) {
-          substr += '_';
-        }
-        yield return substr;
+    static IEnumerable<string> EnumerateString(string str) {
+      var estr = str.AsEnumerable();
+      var len = str.Length;
+      if ((str.Length & 1) == 1) {
+        estr = estr.Append('_');
+        len += 1;
+      }
+      for (int i = 0; i < len; i += 2) {
+        yield return string.Concat(estr.Take(2));
+        estr = estr.Skip(2);
       }
     }
-
     public static string[] Solution(string str)
     {
-      return Split(str).ToArray();
+      return EnumerateString(str).ToArray();
     }
   }
 }
